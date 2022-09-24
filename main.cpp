@@ -27,7 +27,7 @@ int mainMenu(){
     switch(choice){
         case 1 : addGuest();
         break;
-        case 2 : roomSpecifications();
+        case 2 : roomSpecs();
         break;
         case 3 :
         break;
