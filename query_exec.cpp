@@ -5,15 +5,11 @@
 
 using namespace std;
 
-class Data_Room_Specs{
+class Data_Query{
     private:
         vector <string> column_names;
-        vector <pair<string,string>> room_data;
+        vector <pair<string,string>> query_data;
     public:
-        // Data_Room_Specs(){
-        //     void setData();
-        //     void getData();
-        // }
         void setData(string value, string col){
             int temp=0;
             // cout << value << " " << col << "\n";
@@ -27,42 +23,52 @@ class Data_Room_Specs{
             }
             if(!temp) column_names.push_back(col);
             // cout << col << " " << value << "\n";
-            room_data.push_back(make_pair(col,value));
+            query_data.push_back(make_pair(col,value));
         }
         void getData(){
             // cout << "kal";
+            if(query_data.size() == 0){
+                cout << "No Guest Found !!!\n";
+            }
             for(int i=0;i<column_names.size();i++){
-                if(i!=column_names.size()-1)
-                cout << left << setw(20) << column_names[i];
+                if(i==0){
+                    cout << left << setw(9) << column_names[i];
+                }
+                else if(i!=column_names.size()-1)
+                cout << left << setw(13.5) << column_names[i];
                 else
                 cout << column_names[i] << "\n";
             }
 
             for(int i=0;i<column_names.size();i++){
-                if(i!=column_names.size()-1)
-                cout << left << setw(20) << "----------";
+                if(i==0){
+                    cout << left << setw(9) << "-------";
+                }
+                else if(i!=column_names.size()-1)
+                cout << left << setw(13.5) << "----------";
                 else
                 cout << "----------\n";
             }
 
-            for(int i=0,j=0;i<room_data.size();i++,j++){
+            for(int i=0,j=0;i<query_data.size();i++,j++){
                 if(j==column_names.size()) {
                     j=0;
                     cout << "\n";
                 }
-
-                if(room_data[i].first == column_names[j])
-                    cout << left << setw(20) << room_data[i].second;
+                if(query_data[i].first == column_names[j] && j==0)
+                    cout << left << setw(9) << query_data[i].second;
+                else if(query_data[i].first == column_names[j])
+                    cout << left << setw(13.5) << query_data[i].second;
             }
 
-            room_data.clear();
+            query_data.clear();
             column_names.clear();
         }
 };
 
-Data_Room_Specs D;
+Data_Query D;
 
-static int callback_get_roomSpecs(void* data, int argc, char** argv, char** colName){
+static int callback_get_queryData(void* data, int argc, char** argv, char** colName){
     for(int i=0;i<argc;i++){
         D.setData(string(argv[i] ? argv[i] : "NULL"), (string)colName[i]);
     }
@@ -70,7 +76,7 @@ static int callback_get_roomSpecs(void* data, int argc, char** argv, char** colN
     return 0;
 }
 
-int roomSpecs(){
+int queryExec(string query){
     sqlite3 *DB;
     int myCursor = 0;
     char *error;
@@ -83,10 +89,10 @@ int roomSpecs(){
         return -1;
     }
     
-    string query = "SELECT * FROM ROOM_SPECIFICATIONS;";
-    
-    myCursor = sqlite3_exec(DB, query.c_str(), callback_get_roomSpecs, NULL, NULL);
+    myCursor = sqlite3_exec(DB, query.c_str(), callback_get_queryData, NULL, NULL);
     // Data_Room_Specs D;
     D.getData();
+
+    sqlite3_close(DB);
     return 0;    
 }

@@ -67,7 +67,7 @@ int Room :: addRoomInfoToDB(){
     string query = "CREATE TABLE IF NOT EXISTS ROOM_SPECIFICATIONS(ID TEXT PRIMARY KEY NOT NULL, "
                                                                  "TYPE TEXT NOT NULL, BEDS INT NOT NULL, "
                                                                  "AC TEXT NOT NULL, WiFi TEXT NOT NULL, "
-                                                                 "AI TEXT NOT NULL, SWIMMING_POOL TEXT NOT NULL, "
+                                                                 "AI TEXT NOT NULL, POOL TEXT NOT NULL, "
                                                                  "RENT INT NOT NULL);";
 
     myCursor = sqlite3_exec(DB, query.c_str(), NULL, 0, &error);

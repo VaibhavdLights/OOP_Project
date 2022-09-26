@@ -59,11 +59,11 @@ int Customer :: createTable(){
                                                     "ADDRESS TEXT, "
                                                     "MOBILE TEXT NOT NULL, "
                                                     "AADHAR TEXT NOT NULL, "
-                                                    "CHECK_IN_DATE TEXT NOT NULL, "
-                                                    "CHECK_IN_TIME TEXT NOT NULL, "
-                                                    "CHECK_OUT_DATE TEXT NOT NULL, "
-                                                    "CHECK_OUT_TIME TEXT NOT NULL, "
-                                                    "ROOM_NUMBER INT NOT NULL, "
+                                                    "IN_DATE TEXT NOT NULL, "
+                                                    "IN_TIME TEXT NOT NULL, "
+                                                    "OUT_DATE TEXT NOT NULL, "
+                                                    "OUT_TIME TEXT NOT NULL, "
+                                                    "ROOM_NO INT NOT NULL, "
                                                     "ROOM_TYPE TEXT NOT NULL, "
                                                     "AMOUNT INT NOT NULL);";
 
@@ -79,11 +79,11 @@ int Customer :: createTable(){
                                                     "ADDRESS TEXT, "
                                                     "MOBILE TEXT NOT NULL, "
                                                     "AADHAR TEXT NOT NULL, "
-                                                    "CHECK_IN_DATE TEXT NOT NULL, "
-                                                    "CHECK_IN_TIME TEXT NOT NULL, "
-                                                    "CHECK_OUT_DATE TEXT NOT NULL, "
-                                                    "CHECK_OUT_TIME TEXT NOT NULL, "
-                                                    "ROOM_NUMBER INT NOT NULL, "
+                                                    "IN_DATE TEXT NOT NULL, "
+                                                    "IN_TIME TEXT NOT NULL, "
+                                                    "OUT_DATE TEXT NOT NULL, "
+                                                    "OUT_TIME TEXT NOT NULL, "
+                                                    "ROOM_NO INT NOT NULL, "
                                                     "ROOM_TYPE TEXT NOT NULL, "
                                                     "AMOUNT INT NOT NULL);";
 

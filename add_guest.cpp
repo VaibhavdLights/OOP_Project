@@ -6,8 +6,8 @@
 
 using namespace std;
 
-static int ID;
-static int ID1;
+int ID;
+int ID1;
 
 static int callback(void* data, int argc, char** argv, char** colName){
     for(int i=0;i<argc;i++){
@@ -37,15 +37,15 @@ int addGuest(){
     }
 
     string query, query1;
-    query = "SELECT COUNT(*) FROM AJAX_DB;";
-    query1 = "SELECT COUNT(*) FROM AJAX_OLD_DB;";
+    // query = "SELECT COUNT(*) FROM AJAX_DB;";
+    // query1 = "SELECT COUNT(*) FROM AJAX_OLD_DB;";
 
-    myCursor = sqlite3_exec(DB, query.c_str(), callback, NULL, NULL);
-    myCursor = sqlite3_exec(DB, query1.c_str(), callback, NULL, NULL);
-    if(ID == 0 && ID1 == 0){
-        ID = 1;
-    }
-    else{
+    // myCursor = sqlite3_exec(DB, query.c_str(), callback, NULL, NULL);
+    // myCursor = sqlite3_exec(DB, query1.c_str(), callback, NULL, NULL);
+    // if(ID == 0 && ID1 == 0){
+    //     ID = 1;
+    // }
+    {
         query = "SELECT ID FROM AJAX_DB ORDER BY ID DESC LIMIT 1;";
         query1 = "SELECT ID FROM AJAX_OLD_DB ORDER BY ID DESC LIMIT 1;";
         myCursor = sqlite3_exec(DB, query.c_str(), callback, NULL, NULL);
@@ -70,10 +70,10 @@ int addGuest(){
     cout << "Enter the Aadhaar Number of Guest ->> ";
     getline(cin,aadhar);
     fflush(stdin);
-    cout << "Enter the Check Out Date of Guest ->> ";
+    cout << "Enter the Check Out Date of Guest (DD-MM-YYYY) ->> ";
     getline(cin,check_out_date);
     fflush(stdin);
-    cout << "Enter the Check Out Time of Guest ->> ";
+    cout << "Enter the Check Out Time of Guest (HH:MM) ->> ";
     getline(cin,check_out_time);
     fflush(stdin);
     cout << "Enter The Type of Room Guest wants ->> \n";

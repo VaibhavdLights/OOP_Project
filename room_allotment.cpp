@@ -12,7 +12,7 @@ static int callback_get_count(void* data, int argc, char** argv, char** colName)
     return 0;
 }
 
-static vector<int> room_numbers;
+vector<int> room_numbers;
 static int callback_get_rooms(void* data, int argc, char** argv, char** colName){
     for(int i=0;i<argc;i++){
         room_numbers.push_back(stoi(argv[i]));
@@ -34,7 +34,7 @@ int allotRoom(string room_type){
     }
 
     string query;
-    query = "SELECT COUNT(*) FROM AJAX_DB WHERE ROOM_TYPE = '"+room_type+"';";
+    query = "SELECT COUNT(ALL) FROM AJAX_DB WHERE ROOM_TYPE = '"+room_type+"';";
     myCursor = sqlite3_exec(DB, query.c_str(), callback_get_count, NULL, NULL);
 
     if(count_ == 0){
@@ -46,7 +46,7 @@ int allotRoom(string room_type){
         else return 0;
     }
     else{
-        query = "SELECT ROOM_NUMBER FROM AJAX_DB WHERE ROOM_TYPE = '"+room_type+"';";
+        query = "SELECT ROOM_NO FROM AJAX_DB WHERE ROOM_TYPE = '"+room_type+"';";
         myCursor = sqlite3_exec(DB, query.c_str(), callback_get_rooms, NULL, NULL);
 
         sort(room_numbers.begin(), room_numbers.end()); //Intrasort (std::sort)
