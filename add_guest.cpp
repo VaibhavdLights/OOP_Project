@@ -70,25 +70,25 @@ int addGuest(){
     cout << "Enter the Aadhaar Number of Guest ->> ";
     getline(cin,aadhar);
     fflush(stdin);
-    cout << "Enter the Check Out Date of Guest (DD-MM-YYYY) ->> ";
+    cout << "Enter the Check Out Date of Guest (YYYY-MM-DD) ->> ";
     getline(cin,check_out_date);
     fflush(stdin);
     cout << "Enter the Check Out Time of Guest (HH:MM) ->> ";
     getline(cin,check_out_time);
     fflush(stdin);
-    cout << "Enter The Type of Room Guest wants ->> \n";
+    cout << "\nEnter The Type of Room Guest wants ->> \n";
     cout << "1. Single ( > 1 ) ->> \n";
     cout << "2. Double ( > 2 ) ->> \n";
     cout << "3. Suite  ( > 3 ) ->> \n";
     cout << "4. Murphy ( > 4 ) ->> \n";
     cout << "5. Cabana ( > 5 ) ->> \n";
-    cout << "Enter Choice ->> \n";
+    cout << "Enter Choice ->> ";
     cin >> room_type;
     room_type = room_type=="1" ? "SINGLE" : room_type=="2" ? "DOUBLE" : room_type=="3" ? "SUITE" : room_type=="4" ? "MURPHY" : room_type=="5" ? "CABANA" : "0";
 
     auto ztime = time(0);
     stringstream _time_date, _time_time;
-    _time_date << put_time(localtime(&ztime), "%d-%m-%Y");
+    _time_date << put_time(localtime(&ztime), "%Y-%m-%d");
     check_in_date = _time_date.str();
     _time_time << put_time(localtime(&ztime), "%H:%M");
     check_in_time = _time_time.str();
@@ -103,13 +103,10 @@ int addGuest(){
         room_number = allotRoom(room_type);
         cout << "Alloted Room ->> " << room_number;
 
-        cout << "\n\n" << query << "\n\n";
-
         Customer C;
         C.setData(ID,name,address,mobile,aadhar,check_in_date,check_in_time,check_out_date,check_out_time,room_number,room_type,amount);
 
         query = C.getData(true);
-        cout << "\n\n" << query << "\n\n";
         myCursor = sqlite3_exec(DB, query.c_str(), NULL, 0, &error);
         insertion_check(myCursor, error);        
     }

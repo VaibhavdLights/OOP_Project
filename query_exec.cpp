@@ -30,37 +30,41 @@ class Data_Query{
             if(query_data.size() == 0){
                 cout << "No Guest Found !!!\n";
             }
-            for(int i=0;i<column_names.size();i++){
-                if(i==0){
-                    cout << left << setw(9) << column_names[i];
+            else{
+                cout << "\n";
+                for(int i=0;i<column_names.size();i++){
+                    if(i==0){
+                        cout << left << setw(9) << column_names[i];
+                    }
+                    else if(i!=column_names.size()-1)
+                    cout << left << setw(13.5) << column_names[i];
+                    else
+                    cout << column_names[i] << "\n";
                 }
-                else if(i!=column_names.size()-1)
-                cout << left << setw(13.5) << column_names[i];
-                else
-                cout << column_names[i] << "\n";
-            }
 
-            for(int i=0;i<column_names.size();i++){
-                if(i==0){
-                    cout << left << setw(9) << "-------";
+                for(int i=0;i<column_names.size();i++){
+                    if(i==0){
+                        cout << left << setw(9) << "-------";
+                    }
+                    else if(i!=column_names.size()-1)
+                    cout << left << setw(13.5) << "----------";
+                    else
+                    cout << "----------\n";
                 }
-                else if(i!=column_names.size()-1)
-                cout << left << setw(13.5) << "----------";
-                else
-                cout << "----------\n";
-            }
 
-            for(int i=0,j=0;i<query_data.size();i++,j++){
-                if(j==column_names.size()) {
-                    j=0;
-                    cout << "\n";
+                for(int i=0,j=0;i<query_data.size();i++,j++){
+                    if(j==column_names.size()) {
+                        j=0;
+                        cout << "\n";
+                    }
+                    if(query_data[i].first == column_names[j] && j==0)
+                        cout << left << setw(9) << query_data[i].second;
+                    else if(query_data[i].first == column_names[j])
+                        cout << left << setw(13.5) << query_data[i].second;
                 }
-                if(query_data[i].first == column_names[j] && j==0)
-                    cout << left << setw(9) << query_data[i].second;
-                else if(query_data[i].first == column_names[j])
-                    cout << left << setw(13.5) << query_data[i].second;
+                cout << "\n\n";
+                system("pause");
             }
-
             query_data.clear();
             column_names.clear();
         }

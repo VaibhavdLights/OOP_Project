@@ -3,7 +3,6 @@
 
 using namespace std;
 
-
 class CallBack{
     private:
         string initialDate;
@@ -32,10 +31,12 @@ class CallBack{
 };
 
 CallBack C;
-
+static int exit_;
 static int callback_get_initalDate(void *data, int argc, char **argv, char **colName){
-    if (argc == 0)
-        cout << "No Guest Found\n";
+    if (argc == 0){
+        exit_=-1;
+        return -1;
+    }
     for (int i = 0; i < argc; i++){
         C.setDate(argv[i]);
     }
@@ -59,6 +60,14 @@ static int callback_get_initialAmount(void *data, int argc, char **argv, char **
     return 0;
 }
 
+int count__=0;
+static int callback_get_count1(void* data, int argc, char** argv, char** colName){
+    for(int i=0;i<argc;i++){
+        count__ = atoi(argv[i]);
+    }
+    return 0;
+}
+
 int updateCheckout(){
     sqlite3 *DB;
     int myCursor = 0;
@@ -77,9 +86,16 @@ int updateCheckout(){
     cin >> rno;
     string query;
 
+    query = "SELECT COUNT (ALL) FROM AJAX_DB WHERE ROOM_NO = "+to_string(rno)+";";
+    myCursor = sqlite3_exec(DB, query.c_str(), callback_get_count1, NULL, NULL);
+    if(count__==0){
+        cout << "No Guest Found\n";
+        return 0;
+    }
+
     query = "SELECT OUT_DATE FROM AJAX_DB WHERE ROOM_NO = "+to_string(rno)+";";
     myCursor = sqlite3_exec(DB, query.c_str(), callback_get_initalDate, NULL, NULL);
-    
+
     query = "SELECT ROOM_TYPE FROM AJAX_DB WHERE ROOM_NO = "+to_string(rno)+";";
     myCursor = sqlite3_exec(DB, query.c_str(), callback_get_roomType, NULL, NULL);
 
@@ -87,7 +103,7 @@ int updateCheckout(){
     myCursor = sqlite3_exec(DB, query.c_str(), callback_get_initialAmount, NULL, NULL);
 
     string newDate;
-    cout << "Enter New Check-out Date (DD-MM-YYYY) ->> ";
+    cout << "Enter New Check-out Date (YYYY-MM-DD) ->> ";
     cin >> newDate;
 
     string newTime;
@@ -96,16 +112,16 @@ int updateCheckout(){
 
     int newAmount = calculateRent(C.getDate(),newDate,C.getRoomType());
 
-    //DD-MM-YYYY
+    //YYYY-MM-DD
     int days, months, years;
-    days = stoi(newDate.substr(0,2)) - stoi(C.getDate().substr(0, 2));
-    months = stoi(newDate.substr(3,5)) - stoi(C.getDate().substr(3,5));
-    years = stoi(newDate.substr(7,11)) - stoi(C.getDate().substr(7,11));
+    days = stoi(newDate.substr(8,10)) - stoi(C.getDate().substr(8,10));
+    months = stoi(newDate.substr(5,7)) - stoi(C.getDate().substr(5,7));
+    years = stoi(newDate.substr(0,4)) - stoi(C.getDate().substr(0,4));
 
     int nodStay = days + months*30 + years*12*30;
 
     char choice;
-    cout << "Extra Amount To Pay For " << nodStay << " ->> Rs. " << newAmount << "\n";
+    cout << "Extra Amount To Pay For " << nodStay << " Days ->> Rs. " << newAmount << "\n";
     cout << "Do You Want To Confirm? (Y/y) ->> ";
     cin >> choice;
 

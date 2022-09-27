@@ -26,9 +26,9 @@ int calculateRent(string check_in_date, string check_out_date, string room_type)
     }
 
     //DD-MM-YYYY
-    days = stoi(check_out_date.substr(0,2)) - stoi(check_in_date.substr(0, 2));
-    months = stoi(check_out_date.substr(3,5)) - stoi(check_in_date.substr(3,5));
-    years = stoi(check_out_date.substr(7,11)) - stoi(check_in_date.substr(7,11));
+    days = stoi(check_out_date.substr(8,10)) - stoi(check_in_date.substr(8, 10));
+    months = stoi(check_out_date.substr(5,7)) - stoi(check_in_date.substr(5,7));
+    years = stoi(check_out_date.substr(0,4)) - stoi(check_in_date.substr(0,4));
 
     int nodStay = days + months*30 + years*12*30;
 
