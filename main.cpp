@@ -152,7 +152,7 @@ int mainMenu(){
             cout << "FOR USING ";
             this_thread::sleep_for(chrono::milliseconds(200));
             cout << "CLOUD_9 HOTEL MANAGEMENT SYSTEM !!!\n";
-            this_thread::sleep_for(chrono::milliseconds(200));
+            this_thread::sleep_for(chrono::milliseconds(5000));
             return 1;
         }
         break;
