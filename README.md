@@ -8,18 +8,18 @@
   
   o	Command Line to run the code –
   
-  	#### > **g++ main.cpp -l sqlite3 -o main**
+  	> g++ main.cpp -l sqlite3 -o main
     
-  	#### > **main.exe** 
+  	> main.exe
     
     
 ##### OBJECTIVE –
 The main idea of the objective is to build an environment for storage, collection and retrieval of data from database for hotels. 
 
 ##### REFERENCE –
-•	Class 12th Python Project which was similar to objective .
+  •	Class 12th Python Project which was similar to objective .
 
-•	Geekforgeeks for learning SQLAPI++ and sqlite3.
+  •	Geekforgeeks for learning SQLAPI++ and sqlite3.
 
 ##### INTRODUCTION –
 The objective can build an environment for storage, collection and retrieval of data from database for hotels.
@@ -41,23 +41,23 @@ SOFTWARE USED – Visual Studio Code
   
 •	C++ header files
 
-  o	bits/stdc++.h – to include all the basic header files
+   o	bits/stdc++.h – to include all the basic header files
   
-  o	ctime – to get the system time information
+   o	ctime – to get the system time information
   
-  o	iomanip – to format/manipulate the output (time) 
+   o	iomanip – to format/manipulate the output (time) 
   
-  o	string – to use std :: string class
+   o	string – to use std :: string class
   
-  o	files header files – to include different files to clean-up the code and make it more readable.
+   o	files header files – to include different files to clean-up the code and make it more readable.
   
 •	Object Oriented Programming Concepts.
 
 ### INSTRUCTIONS –
-  o	Run the main.cpp file
+   o	Run the main.cpp file
   
-  o	Command Line to run the code –
+   o	Command Line to run the code –
   
-  	> **g++ main.cpp -l sqlite3 -o main**
+  	> g++ main.cpp -l sqlite3 -o main
     
-  	> **main.exe** 
+  	> main.exe
