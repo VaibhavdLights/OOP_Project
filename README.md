@@ -2,7 +2,7 @@
 
 # Hotel Management System (C++)
 
-# Course Project. Supervisor: Dr. Pavan Kumar BN, Department of Computer Science and Engineering, IIITSricity
+##### Course Project. Supervisor: Dr. Pavan Kumar BN, Department of Computer Science and Engineering, IIITSricity
 
 ### INSTRUCTIONS –
 
